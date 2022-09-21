@@ -1,0 +1,9 @@
+app-toolbar{
+	position: fixed;
+	height: 3vh;
+}
+
+router-outlet{
+	position: relative;
+	top: 3vh;
+}

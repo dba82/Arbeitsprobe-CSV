@@ -1,0 +1,40 @@
+
+<table><!-- (click) = "log($event)">-->
+  <thead>
+    <tr>
+      <td
+        [style.min-width] = "fieldname.length + 'em'"
+         *ngFor="let fieldname of data.fieldnames">
+            {{fieldname}}
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+<!--ohne Virtual Scrolling:-->
+<!-- 
+    <tr *ngFor="let row of data.table; index as i;" 
+        [attr.data-entrynumber]="i"
+        [class] = "(i%2 ===0) ? 'even' : 'odd'">
+        <td 
+          *ngFor="let fieldname of data.fieldnames" >
+          {{row[fieldname]}}
+        </td>
+    </tr>
+-->
+    <cdk-virtual-scroll-viewport scrollWindow autosize >
+      <tr *cdkVirtualFor="let row of data.table; index as i; templateCacheSize: 0" 
+        [attr.data-entrynumber]="i"
+        [class] = "(i%2 ===0) ? 'even' : 'odd'">
+        <td
+          #cell 
+          [style.min-width] = "fieldname.length + 'em'" 
+          *ngFor="let fieldname of data.fieldnames"
+          contenteditable 
+          (blur) = "row[fieldname] = cell.innerText"
+          >
+          {{row[fieldname]}}
+        </td>
+      </tr>
+    </cdk-virtual-scroll-viewport>
+  </tbody>
+</table>

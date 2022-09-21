@@ -1,0 +1,21 @@
+<!--<svg xmlns="http://www.w3.org/2000/svg" 
+[attr.width]="5+2*circle.radius" 
+[attr.height]="5+2*circle.radius">
+<circle 
+	[attr.cy]="circle.y"  
+	[attr.cx]="circle.x" 
+	[attr.r]="circle.radius" 
+	fill="none" 
+	stroke="black" 
+	stroke-width="1">
+</circle>
+<path  
+	stroke-opacity="1" 
+	fill-opacity="1" 
+	stroke="grey" 
+	stroke-width=".5" 
+	*ngFor= "let slice of slices"
+	[attr.fill]="slice.color" 
+	[attr.d]="describeArc(circle.x, circle.y, circle.r, slice.start, slice.end)"
+></path>
+</svg>-->

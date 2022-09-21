@@ -1,0 +1,4 @@
+<button (click) = "router.navigate([''])">Zeige alle</button>
+<button (click) = "data.download(filename.value)">Download CSV</button>
+<input #filename [value] = "data.filename" type="text">
+<button (click) = "data.addNewRow(); router.navigate([''+(data.table.length-1)])" >Neue Zeile</button>
