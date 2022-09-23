@@ -24,14 +24,13 @@ export class CsvService {
     for (let i = 0; i < str.length; i++){
       const char = str[i];
       switch (char){
-        case '\\' : {
-          escapedQuote = str[i+1] === '"';
-          break; 
-        }
         case '"' : {
-          betweenQuotes = escapedQuote ? betweenQuotes : !betweenQuotes;
-          currentString += escapedQuote ? char : '';
-          escapedQuote = false;
+          if (betweenQuotes && str[i+1] === '"') {
+            currentString += char;
+            i += 1;
+            break;
+          }
+          betweenQuotes = !betweenQuotes;
           break;
         }
         case ';' : {

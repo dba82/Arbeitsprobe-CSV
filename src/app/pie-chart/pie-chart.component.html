@@ -1,21 +1,14 @@
-<!--<svg xmlns="http://www.w3.org/2000/svg" 
-[attr.width]="5+2*circle.radius" 
-[attr.height]="5+2*circle.radius">
-<circle 
-	[attr.cy]="circle.y"  
-	[attr.cx]="circle.x" 
-	[attr.r]="circle.radius" 
-	fill="none" 
-	stroke="black" 
-	stroke-width="1">
-</circle>
-<path  
-	stroke-opacity="1" 
-	fill-opacity="1" 
-	stroke="grey" 
-	stroke-width=".5" 
-	*ngFor= "let slice of slices"
-	[attr.fill]="slice.color" 
-	[attr.d]="describeArc(circle.x, circle.y, circle.r, slice.start, slice.end)"
-></path>
-</svg>-->
+<svg xmlns="http://www.w3.org/2000/svg" 
+	[attr.viewBox] = "'0 0 ' + 2 * radius + ' ' + 2 * radius"
+>
+
+	<path  
+		*ngFor= "let slice of slices;"
+		[attr.d]="slice.path"
+		[matTooltip]="(slice.percentage | percent ) + ' ' + (slice.name.length ? slice.name : 'kein Wert')"
+        matTooltipPosition="above"
+
+	></path>
+
+</svg>
+

@@ -1,33 +1,53 @@
+<div class = "table-wrapper">
+	<table>
+	  <thead>
+		<tr>
+      <th>
+        <div class="table-header-cell">  
+          <button 
+            mat-icon-button
+           ><mat-icon></mat-icon>
+          </button>
+          </div>
 
-<table><!-- (click) = "log($event)">-->
-  <thead>
-    <tr>
-      <td
-        [style.min-width] = "fieldname.length + 'em'"
-         *ngFor="let fieldname of data.fieldnames">
-            {{fieldname}}
-      </td>
-    </tr>
-  </thead>
-  <tbody>
-<!--ohne Virtual Scrolling:-->
-<!-- 
-    <tr *ngFor="let row of data.table; index as i;" 
-        [attr.data-entrynumber]="i"
-        [class] = "(i%2 ===0) ? 'even' : 'odd'">
-        <td 
-          *ngFor="let fieldname of data.fieldnames" >
-          {{row[fieldname]}}
+      </th>
+		  <th
+			 *ngFor="let fieldname of data.fieldnames">
+       <div class="table-header-cell">  
+				{{fieldname}}
+        <button 
+          [style.visibility] = "chart.statisticsFor(fieldname).length > 150 ? 'hidden' : 'visible'"
+          mat-icon-button
+          (click) = "router.navigate(['chart/', fieldname])"
+          matTooltip="Prozentuale Darstellung als Tortendiagramm für {{fieldname}}" >
+          <mat-icon>pie_chart</mat-icon>
+        </button>
+        </div>
+        </th>
+		</tr>
+	  </thead>
+	  <tbody>
+      <tr *ngFor="let row of data.table | page: pageService.pageNumber; index as i;">
+        <td >
+        <div class="add-remove-cell">
+          <div>{{(i+1) + (pageService.pageNumber-1) * pageService.pageSize}}</div>
+          <!--<button 
+            mat-icon-button
+            >
+            <mat-icon>remove_circle</mat-icon>
+          </button>      -->  
+        <button 
+            mat-icon-button
+            (click) = "data.addNewRowAfter(row)"
+            matTooltip="Füge eine neue Reihe unter dieser hinzu"
+            matTooltipPosition="right"
+            >
+            <mat-icon>add_circle</mat-icon>
+          </button>
+        </div>
         </td>
-    </tr>
--->
-    <cdk-virtual-scroll-viewport scrollWindow autosize >
-      <tr *cdkVirtualFor="let row of data.table; index as i; templateCacheSize: 0" 
-        [attr.data-entrynumber]="i"
-        [class] = "(i%2 ===0) ? 'even' : 'odd'">
         <td
           #cell 
-          [style.min-width] = "fieldname.length + 'em'" 
           *ngFor="let fieldname of data.fieldnames"
           contenteditable 
           (blur) = "row[fieldname] = cell.innerText"
@@ -35,6 +55,7 @@
           {{row[fieldname]}}
         </td>
       </tr>
-    </cdk-virtual-scroll-viewport>
-  </tbody>
-</table>
+		</tbody>
+	</table>
+  <app-page-navigation></app-page-navigation>
+</div>

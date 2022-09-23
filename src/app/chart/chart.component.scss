@@ -1,0 +1,31 @@
+:host{
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	overflow-y:scroll;
+}
+
+app-pie-chart{
+	margin-top: 10px;
+}
+
+@media (min-width: 100vh) {
+	app-pie-chart{
+		height: 50vh;
+	}
+ }
+
+ @media (min-height: 100vw) {
+	app-pie-chart{
+		width: 50vw;
+	}
+ }
+
+ .wrapper{
+	display:flex;
+ }
+ .wrapper table{
+	margin-left: 20px;
+ }

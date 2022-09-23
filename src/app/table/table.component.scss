@@ -1,24 +1,70 @@
-/*cdk-virtual-scroll-viewport{
-	height: 100vh;
-	width: 100vw;
-}*/
-thead{
-	position: fixed;
-	top: 0;
-	height: 5vh;
-	background-color: antiquewhite;
-	z-index: 100000;
-	font-weight: bold;
+table{
+    overflow-y: scroll;
+	position:relative;
+	border-collapse: collapse;
+	height: 100%;
 }
-tbody{
-	position: relative;
-	top: 6vh;
+/*.cdk-virtual-scrollable{
+	width: auto;
+	height: 100%;
+}*/
+:host{
+	display: block;
+	width: 100%;
+}
+thead{
+	height: 50px;
+}
+th{
+	position: sticky;
+	top:0;
+	background: white;
+	padding: 0;
+	z-index: 1;
+}
+tbody tr:nth-child(2n){
+	background-color: #B0B0B0;
 }
 
-tr.even{
-	background-color: lightblue;
-}
 td{
 	padding: 10px;
 	border-collapse: collapse;
+}
+.table-wrapper{
+	height: calc(100vh - 60px);
+	width: 100%;
+	overflow:scroll;
+	overflow-x: scroll
+}
+.table-header-cell{
+	display:flex;
+	align-items: center;
+	box-shadow: 0px 3px 2px 0px #B0B0B0;
+	height: 100%;
+	padding: 10px;
+	background-color: white;
+}
+tr th:first-child{
+	position: sticky;
+	left:0;
+}
+tr td:first-child{
+	position: sticky;
+	left:0;
+	padding:0;
+	height: 100%;
+}
+tbody tr td:not(:first-child):focus{
+	outline: none;
+	background-color: darkgoldenrod;
+	color: white;
+}
+.add-remove-cell{
+	background-color:  white;
+	box-shadow: 3px 0px 2px 0px #B0B0B0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }

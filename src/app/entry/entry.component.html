@@ -1,7 +1,0 @@
-<fieldset *ngFor = "let fieldname of data.fieldnames">
-	<label [for]="fieldname">{{fieldname}}</label>
-	<textarea #t
-		[id] = "fieldname"
-		[value] = "data.table[entrynumber][fieldname]"
-		(change) = "data.table[entrynumber][fieldname] = t.value"></textarea>
-</fieldset>

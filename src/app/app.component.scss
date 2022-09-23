@@ -1,9 +1,5 @@
-app-toolbar{
-	position: fixed;
-	height: 3vh;
-}
-
-router-outlet{
-	position: relative;
-	top: 3vh;
+main{
+	margin-top: 65px;
+	height: calc(100vh - 65px);
+    display: flex;
 }

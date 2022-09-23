@@ -1,0 +1,40 @@
+<button 
+mat-icon-button
+(click) = "router.navigate(['page', 1])"
+[disabled] = "pageService.pageNumber === 1"
+matTooltip="Zur ersten Seite der Tabelle"
+>
+<mat-icon>first_page</mat-icon>
+</button>
+<button 
+mat-icon-button
+(click) = "router.navigate(['page', pageService.pageNumber - 1 ])"
+[disabled] = "pageService.pageNumber === 1"
+matTooltip="Eine Seite zurück">
+<mat-icon>chevron_left</mat-icon>
+</button>
+
+<div class = "flex-center">{{pageService.pageNumber}} von {{pageService.numberOfPages}}</div>	
+
+<button 
+mat-icon-button
+(click) = "router.navigate(['page', pageService.pageNumber + 1 ])"
+[disabled] = "pageService.pageNumber === pageService.numberOfPages"
+matTooltip="Eine Seite vor."
+>
+<mat-icon>chevron_right</mat-icon>
+</button>
+<button 
+mat-icon-button
+(click) = "router.navigate(['page', pageService.numberOfPages ])"
+[disabled] = "pageService.pageNumber === pageService.numberOfPages"
+matTooltip="Zur letzten Seite der Tabelle"
+>
+<mat-icon>last_page</mat-icon>
+</button>
+<div class = "flex-center">
+	<mat-select
+		[(value)]="pageService.pageSize">
+		<mat-option *ngFor="let number of [25, 50, 75, 100, 200]" [value]="number">{{number}}</mat-option>
+	</mat-select> 
+	Zeilen je Seite</div>

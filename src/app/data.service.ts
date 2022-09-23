@@ -15,24 +15,18 @@ export class DataService {
              .subscribe((e : string)=> this.table = csv.parseCSV(e.substring(this.fieldnames.join(';').length+1), this.fieldnames))
   }
 
-  addNewRow(){
-    this.table.push(this.fieldnames.reduce((a : any, b : string) => {
+
+  addNewRowAfter(row : any){
+    const index = this.table.indexOf(row);
+    this.table.splice(index+1, 0, this.fieldnames.reduce((a : any, b : string) => {
       a[b] = '';
       return a
     }, {}))
   }
 
   download (filename = 'articles'){
-    this.fd.downloadAsText(this.csv.toCSVString(this.table, this.fieldnames), filename + '.csv')
+    const csvString = this.csv.toCSVString(this.table, this.fieldnames);
+    this.fd.downloadAsText(csvString, filename + '.csv')
   }
 
-  statisticsFor(fieldname : string){
-    const counts = this.table.map( (row : any) => row[fieldname])
-                             .reduce( (a, b) => a[b] = a[b] ? a[b] + 1 : 1, {})
-    return Object.keys(counts).map( (key : string) => {
-      return { value: key,
-               percentage: counts[key]/this.table.length
-              };
-    })                         
-  }
 }

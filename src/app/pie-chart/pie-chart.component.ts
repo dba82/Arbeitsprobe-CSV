@@ -1,46 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { bufferToggle } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.scss']
 })
-export class PieChartComponent  {
-/*  public items : {name: string, percentage: number}[] = []
-  public slices;
-  constructor() { 
-    this.slices = this.items.reduce( (a : {start:number, end:number, color:string, name:string, percentage: string}[], b : {name:string, percentage: number}) => {
-      return [...a, {
-        ...b,
-        start: a.length ? a[a.length-1].end : 0,
-        end: Math.PI * b.percentage,
-        color: (a.length % 2 === 0) ? "red" : "blue",
-      }]
-    },[]).map(x=> {return {...x, arc: this.describeArc(this.circle.x, this.circle.y, this.circle.radius, x.start, x.end)))
-  }
+export class PieChartComponent  implements OnInit{
+  @Input() public items : any[] = [
+    {name: "A", percentage: 0.20, color: "green"},
+    {name: "B", percentage: 0.65, color: "red"},
+    {name: "C", percentage: 0.05, color: "blue"},
+    {name: "D", percentage: 0.1, color: "yellow"},]
+  public slices : any[] = [];
+  public center = {x: 100, y: 100};
+  public radius = 100;
 
-  describeArc(x : number, y : number, radius : number, startAngle : number, endAngle: number){
-    const start = this.polarToCartesian(x, y, radius, endAngle);////LETZTES ARGUMENT MÜSSTE ANDRESRUM SEIN; ODER????
-    const end = this.polarToCartesian(x, y, radius, startAngle);////LETZTES ARGUMENT MÜSSTE ANDRESRUM SEIN; ODER????
-    var arcSweep = endAngle - startAngle <= Math.PI ? "0" : "1";
-    var d = [
-        "M", start.x, start.y, 
-        "A", radius, radius, 0, arcSweep, 0, end.x, end.y,
-        "L", x,y,
-        "L", start.x, start.y
-    ].join(' ');
-    return d;       
-}
-  ngOnInit(): void {
+  generateSlices() { 
+    this.slices = this.items
+        .reduce( (result : any[], item : {name:string, percentage: number}) => {
+          const startAngle = result.length ? result[result.length-1].endAngle : 0;
+          const endAngle = startAngle + Math.PI * 2 * item.percentage
+          return [
+            ...result, 
+            {
+              ...item,
+              endAngle,
+              path: `M ${this.center.x + (this.radius * Math.cos(startAngle))} ${this.center.y + (this.radius * Math.sin(startAngle))} \
+                     A ${this.radius} ${this.radius} 0 ${endAngle - startAngle <= Math.PI ? "0" : "1"} 1 ${this.center.x + (this.radius * Math.cos(endAngle))} ${this.center.y + (this.radius * Math.sin(endAngle))} \
+                     L ${this.center.x} ${this.center.y} \
+                     L ${this.center.x + (this.radius * Math.cos(startAngle))} ${this.center.y + (this.radius * Math.sin(startAngle))}`
+        }
+      ]
+    },[]);
   }
-
-  polarToCartesian(centerX : number, centerY : number, radius : number, angleInRadians : number) {
-    //const angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
-    return {
-    x: centerX + (radius * Math.cos(angleInRadians)),
-    y: centerY + (radius * Math.sin(angleInRadians))
-  };
-}
-*/
+  
+  ngOnInit(){
+    this.generateSlices();
+  }
 }
