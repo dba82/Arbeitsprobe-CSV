@@ -36,9 +36,9 @@
         </td>
         <!---->
         <td  #cell
-            *ngFor="let content of row; index as j;" 
+            *ngFor="let columnName of table.columnNames; index as j;" 
             contenteditable 
-            [innerText] ="content.content" (blur)="content.content = cell.innerText"
+            [innerText] ="row[columnName]" (blur)="row[columnName] = cell.innerText"
             > 
         </td>
       </tr>

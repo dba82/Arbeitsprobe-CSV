@@ -116,7 +116,14 @@ export class DataTable {
 					}
 					currentRow.push(currentString);
 					currentString = '';
-					table.push(currentRow);
+					if (table[0]){
+						table.push(table[0].reduce((a:any,b:string,i:number) => {
+							a[b] = currentRow[i];
+							return a;
+						}, {}))
+					} else {
+						table.push(currentRow);
+					}
 					currentRow = [];
 					break;
 				}
@@ -125,10 +132,10 @@ export class DataTable {
 				}
 			}
 		}
-		return new DataTable(table.slice(1).map(y=>y.map((x:string)=>{return {content: x}})), table[0]);
+		return new DataTable(table.slice(1), table[0]);
 	}
 
-	constructor(public rows: {content:string}[][], public columnNames: string[]) { }
+	constructor(public rows: any, public columnNames: string[]) { }
 
 	get width() {
 		return this.columnNames.length;
@@ -138,16 +145,18 @@ export class DataTable {
 		return this.rows.length;
 	}
 
-	addNewRowAfter(row: {content:string}[]) {
+	addNewRowAfter(row: any) {
 		const index: number = this.rows.indexOf(row);
-		const newRow: {content:string}[] = Array.from({ length: this.width }, () =>{return  {content:''}});
+		const newRow:any = this.columnNames.reduce((a:any,b:any) =>{
+			a[b] = "";
+			return a;
+		}, {})
 		this.rows.splice(index + 1, 0, newRow);
-		console.log(newRow);
 	}
 
 	getColumnByName(columnName: string) {
 		const index = this.columnNames.indexOf(columnName);
-		return this.rows.map(row => row[index]['content']);
+		return this.rows.map((row:any) => row[index]['content']);
 	}
 
 	toCSVString(): string {
@@ -157,8 +166,10 @@ export class DataTable {
 			return str;
 		}
 
-		return JSON.stringify(this.rows)/*[this.columnNames, ...this.rows]
-			.map((row: {content:string}[]) => row.map(x=>x.content).map(toFieldString).join(";"))
-			.join("\n")*/
+		return this.columnNames.map(toFieldString).join(";") + 
+			   this.rows
+			    	.map((row:any) => Object.keys(row)
+									.map( (key:string) => toFieldString(row[key])).join(";"))
+			.join("\n");
 		}
 	}
