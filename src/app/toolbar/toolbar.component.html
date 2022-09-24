@@ -1,35 +1,37 @@
 <mat-toolbar>
 	<mat-toolbar-row>
-	<button 
-		mat-icon-button
-		(click) = "router.navigate(['page', page.pageSize, page.pageNumber])"
-		[disabled] = "router.url.substring(1, 5) === 'page'"
-		matTooltip="Zur Tabelle">
-		<mat-icon> view_list</mat-icon>
-	</button>
-			<!--(click) = "data.download(filename.value)">-->
-	
-	<button 
-		mat-icon-button
-		matTooltip="Lade die Tabelle als CSV-Datei auf dein Gerät."
-		(click) = "showSecondRow = !showSecondRow">
-		<mat-icon>{{showSecondRow ? 'cancel' : 'save_alt'}}</mat-icon>
-	</button>
-	  
-	<app-page-navigation class="page-buttons-wrapper" *ngIf="router.url.substring(1, 5) === 'page'">
-	</app-page-navigation>	
-</mat-toolbar-row>
-<mat-toolbar-row *ngIf="showSecondRow">
-	<mat-form-field appearance="outline">
-		<mat-label>Dateiname</mat-label>
+		<button 
+			mat-icon-button
+			(click) = "router.navigate(['page', page.pageSize, page.pageNumber])"
+			[disabled] = "router.url.substring(1, 5) === 'page'"
+			matTooltip="Zur Tabelle">
+			<mat-icon> view_list</mat-icon>
+		</button>
+		
+		<button 
+			mat-icon-button
+			matTooltip="Lade die Tabelle als CSV-Datei auf dein Gerät."
+			(click) = "toggleSecondRow()">
+			<mat-icon>{{secondRowVisible ? 'cancel' : 'save_alt'}}</mat-icon>
+		</button>
+		
+		<app-page-navigation 
+			class="page-buttons-wrapper" 
+			*ngIf="router.url.substring(1, 5) === 'page'">
+		</app-page-navigation>	
+	</mat-toolbar-row>
 
-		<input #input matInput [value] = "data.filename">
-
-	  </mat-form-field>
-	  <button 
-	  (click) = "data.download(input.value)"
-		mat-icon-button>
-		<mat-icon>save_alt</mat-icon>
-	</button>
-</mat-toolbar-row>
+	<mat-toolbar-row *ngIf="secondRowVisible">
+		<mat-form-field 
+			id = "filename"
+			appearance="outline">
+			<mat-label>Dateiname</mat-label>
+			<input #input matInput [value] = "data.filename">
+		</mat-form-field>
+		<button 
+			(click) = "data.download(input.value)"
+			mat-icon-button>
+			<mat-icon>save_alt</mat-icon>
+		</button>
+	</mat-toolbar-row>
 </mat-toolbar>

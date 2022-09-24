@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { PageService } from '../page.service';
@@ -9,9 +9,16 @@ import { PageService } from '../page.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent{
-  public showSecondRow = false;
+  @Output() sizeChange = new EventEmitter();
+
+  public secondRowVisible = false;
   constructor(
     public data : DataService, 
     public router : Router, 
     public page : PageService) { }
+
+  toggleSecondRow(){
+    this.secondRowVisible = !this.secondRowVisible;
+    this.sizeChange.emit(this.secondRowVisible ? 'small' : 'big');
+  }
 }

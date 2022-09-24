@@ -7,5 +7,6 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public sizeOfMainContent = 'big';
 constructor(public data: DataService){}
 }
