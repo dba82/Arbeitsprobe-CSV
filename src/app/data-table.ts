@@ -155,8 +155,7 @@ export class DataTable {
 	}
 
 	getColumnByName(columnName: string) {
-		const index = this.columnNames.indexOf(columnName);
-		return this.rows.map((row:any) => row[index]['content']);
+		return this.rows.map((row:any) => row[columnName]);
 	}
 
 	toCSVString(): string {
