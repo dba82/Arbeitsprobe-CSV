@@ -1,7 +1,10 @@
 <ng-container *ngIf="chartData">
 <h1>{{columnName}}</h1>
 <div class="wrapper">
-	<app-pie-chart [items] = "chartData.percentages"></app-pie-chart>
+	<app-pie-chart 
+	[items] = "chartData.percentages"
+	></app-pie-chart>
+	
 	<table>
 		<thead>
 			<tr>
@@ -11,7 +14,11 @@
 			</tr>	
 		</thead>
 		<tbody>
-			<tr *ngFor = "let item of chartData.percentages">
+			<tr 
+				*ngFor = "let item of chartData.percentages"
+				[class] = "item.selected ? 'selected' : ''"
+				(click) = "item.selected = !item.selected"
+				>
 				<td>{{item.name || 'kein Wert'}}</td>
 				<td>{{item.percentage | percent:'1.0-2'}}</td>
 				<td>{{item.count}}</td>

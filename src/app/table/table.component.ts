@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChartService } from '../chart.service';
 import { DataTable } from '../data-table';
 import { DataService } from '../data.service';
 import { PageService } from '../page.service';
@@ -16,7 +15,6 @@ export class TableComponent{
   @Input() pageSize : number = 25;
 
   constructor(
-    public router : Router, 
-    public chart : ChartService ){
+    public router : Router){
   }
 }

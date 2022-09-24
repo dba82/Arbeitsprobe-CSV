@@ -17,6 +17,7 @@ export class ChartData {
 					}
 					return a;
 				}, {})
+				this._lastValue = this.column;
 		}
 		return this._counts;
 	}
@@ -30,6 +31,7 @@ export class ChartData {
 						percentage: this.counts[key].count / this.column.length
 					}
 				}).sort((a, b) => a.percentage < b.percentage ? 1 : -1)
+				this._lastValue = this.column;
 		}
 		return this._percentages;
 	}

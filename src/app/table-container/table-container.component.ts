@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineAll, combineLatest, forkJoin, Subscription } from 'rxjs';
+import { DataTable } from '../data-table';
 import { DataService } from '../data.service';
 import { PageService } from '../page.service';
 
@@ -11,18 +12,19 @@ import { PageService } from '../page.service';
 })
 export class TableContainerComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
+  public table: DataTable = new DataTable([], []);
 
-  public loaded : boolean = false;
   constructor(private route: ActivatedRoute,
     public page: PageService,
     public data: DataService) { }
 
   ngOnInit(): void {
     this.subscriptions = [
-      combineLatest([this.data.table, this.route.params])
+      combineLatest([this.data.tableLoaded, this.route.params])
         .subscribe(([table, params]) => {
           this.page.pageSize = +params['pagesize'];
           this.page.pageNumber = +params['pagenumber'];
+          this.table = this.data.table;
         })
     ]
 

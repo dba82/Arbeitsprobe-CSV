@@ -9,7 +9,9 @@ $base-color: #036;
 	display: block;
 	height: 100%;
 }
-
+path.selected{
+	fill: goldenrod;
+}
 svg{
 	height: 100%;
 }

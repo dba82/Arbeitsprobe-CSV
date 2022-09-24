@@ -3,11 +3,14 @@
 >
 
 	<path  
-		*ngFor= "let slice of slices;"
-		[attr.d]="slice.path"
-		[matTooltip]="(slice.percentage | percent ) + ' ' + (slice.name.length ? slice.name : 'kein Wert')"
-        matTooltipPosition="above"
-	></path>
-
+		*ngFor= "let item of items trackBy: tracker"
+		[attr.d]="slices[item.name].path"
+		class = "{{item.selected ? 'selected' : ''}}"
+		(click) = "item.selected = !item.selected;
+					lastItem = item"
+		[matTooltip]="(item.percentage | percent ) + ' ' + (item.name.length ? item.name : 'kein Wert')"
+		matTooltipPosition="above"
+	>
+</path>
 </svg>
-
+<p *ngIf = "lastItem.name">{{lastItem.name}}  {{lastItem.percentage | percent}} ({{lastItem.count}})</p>
