@@ -5,11 +5,11 @@ import { ChartData } from '../chart-data';
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+  selector: 'app-chart-page',
+  templateUrl: './chart-page.component.html',
+  styleUrls: ['./chart-page.component.scss']
 })
-export class ChartComponent implements OnInit {
+export class ChartPageComponent implements OnInit {
   private subscriptions: Subscription[] = [];
   
   public chartData : ChartData | null = null;

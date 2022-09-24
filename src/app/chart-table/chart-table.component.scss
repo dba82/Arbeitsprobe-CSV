@@ -1,0 +1,30 @@
+$base-color: #036;
+
+@for $i from 0 through 15 {
+	tbody tr:nth-child(#{$i}n) {
+	  background-color: lighten($base-color, $i * 5%);
+	  color: white ;
+	  @if $i > 7 {
+		color: black ;;
+	  }
+	}
+}
+
+
+tbody tr.selected{
+   background-color: goldenrod;
+}
+table{
+   cursor:default;
+}
+
+
+
+td, th{
+   padding: 10px;
+}
+
+th{
+   text-align: left;
+   background-color: whitesmoke;
+}

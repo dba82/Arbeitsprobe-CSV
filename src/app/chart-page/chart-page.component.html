@@ -1,0 +1,7 @@
+<ng-container *ngIf="chartData">
+<h1>{{columnName}} ({{chartData.percentages.length}})</h1>
+<div class="wrapper">
+	<app-pie-chart [items] = "chartData.percentages"></app-pie-chart>
+	<app-chart-table [items] = "chartData.percentages"></app-chart-table>
+</div>
+</ng-container>

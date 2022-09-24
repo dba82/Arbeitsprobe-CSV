@@ -7,8 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./pie-chart.component.scss']
 })
 export class PieChartComponent implements OnInit {
-  @Output() public selectionChanged: EventEmitter<{ name: string }> = new EventEmitter();
-
   @Input() public items: any[] = [
     { name: "A", percentage: 0.20, color: "green" },
     { name: "B", percentage: 0.65, color: "red" },

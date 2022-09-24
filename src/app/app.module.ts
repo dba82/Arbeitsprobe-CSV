@@ -14,13 +14,14 @@ import {ScrollingModule as ExperimentalScrollingModule} from '@angular/cdk-exper
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PagePipe } from './page.pipe';
 import {MatIconModule} from '@angular/material/icon';
-import { ChartComponent } from './chart/chart.component'
+import { ChartPageComponent } from './chart-page/chart-page.component'
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatButtonModule } from '@angular/material/button'
 import {MatInputModule} from '@angular/material/input';
 import { PageNavigationComponent } from './page-navigation/page-navigation.component';
 import {MatSelectModule} from '@angular/material/select';
-import { TableContainerComponent } from './table-container/table-container.component';
+import { TablePageComponent } from './table-page/table-page.component';
+import { ChartTableComponent } from './chart-table/chart-table.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,10 @@ import { TableContainerComponent } from './table-container/table-container.compo
     ToolbarComponent,
     PieChartComponent,
     PagePipe,
-    ChartComponent,
+    ChartPageComponent,
     PageNavigationComponent,
-    TableContainerComponent
+    TablePageComponent,
+    ChartTableComponent
   ],
   imports: [
     BrowserModule,

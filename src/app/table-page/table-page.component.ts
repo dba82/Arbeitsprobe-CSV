@@ -7,10 +7,10 @@ import { PageService } from '../page.service';
 
 @Component({
   selector: 'app-table-container',
-  templateUrl: './table-container.component.html',
-  styleUrls: ['./table-container.component.scss']
+  templateUrl: './table-page.component.html',
+  styleUrls: ['./table-page.component.scss']
 })
-export class TableContainerComponent implements OnInit, OnDestroy {
+export class TablePageComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public table: DataTable = new DataTable([], []);
 

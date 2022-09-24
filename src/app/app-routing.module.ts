@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChartComponent } from './chart/chart.component';
-import { TableContainerComponent } from './table-container/table-container.component';
+import { ChartPageComponent } from './chart-page/chart-page.component';
+import { TablePageComponent } from './table-page/table-page.component';
 import { TableComponent } from './table/table.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'page/25/1', pathMatch: 'full'},
-  {path: 'chart/:columnname', component: ChartComponent},
-  {path: 'page/:pagesize/:pagenumber', component: TableContainerComponent}
+  {path: 'chart/:columnname', component: ChartPageComponent},
+  {path: 'page/:pagesize/:pagenumber', component: TablePageComponent}
 ];
 
 @NgModule({
