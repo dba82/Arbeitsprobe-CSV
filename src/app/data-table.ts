@@ -54,6 +54,7 @@ export class DataTable {
 	get length() {
 		return this.rows.length;
 	}
+	
 	addNewRowAfter(row: string[]) {
 		const index: number = this.rows.indexOf(row);
 		const newRow: string[] = Array.from({ length: this.width }, () => '');
@@ -64,6 +65,7 @@ export class DataTable {
 		const index = this.columnNames.indexOf(columnName);
 		return this.rows.map(row => row[index]);
 	}
+
 	toCSVString(): string {
 		function toFieldString(str: string): string {
 			str = str.replace(/"/g, '""')
