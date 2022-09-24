@@ -1,6 +1,6 @@
 <button 
 mat-icon-button
-(click) = "router.navigate(['page', 1])"
+(click) = "router.navigate(['page', pageService.pageSize, 1])"
 [disabled] = "pageService.pageNumber === 1"
 matTooltip="Zur ersten Seite der Tabelle"
 >
@@ -8,7 +8,7 @@ matTooltip="Zur ersten Seite der Tabelle"
 </button>
 <button 
 mat-icon-button
-(click) = "router.navigate(['page', pageService.pageNumber - 1 ])"
+(click) = "router.navigate(['page', pageService.pageSize, pageService.pageNumber - 1 ])"
 [disabled] = "pageService.pageNumber === 1"
 matTooltip="Eine Seite zurück">
 <mat-icon>chevron_left</mat-icon>
@@ -18,7 +18,7 @@ matTooltip="Eine Seite zurück">
 
 <button 
 mat-icon-button
-(click) = "router.navigate(['page', pageService.pageNumber + 1 ])"
+(click) = "router.navigate(['page', pageService.pageSize, pageService.pageNumber + 1 ])"
 [disabled] = "pageService.pageNumber === pageService.numberOfPages"
 matTooltip="Eine Seite vor."
 >
@@ -26,7 +26,7 @@ matTooltip="Eine Seite vor."
 </button>
 <button 
 mat-icon-button
-(click) = "router.navigate(['page', pageService.numberOfPages ])"
+(click) = "router.navigate(['page', pageService.pageSize, pageService.numberOfPages ])"
 [disabled] = "pageService.pageNumber === pageService.numberOfPages"
 matTooltip="Zur letzten Seite der Tabelle"
 >
@@ -35,6 +35,7 @@ matTooltip="Zur letzten Seite der Tabelle"
 <div class = "flex-center">
 	<mat-select
 		[(value)]="pageService.pageSize">
-		<mat-option *ngFor="let number of [25, 50, 75, 100, 200]" [value]="number">{{number}}</mat-option>
+		<mat-option *ngFor="let number of standardPageSizes" [value]="number">{{number}}</mat-option>
+		<mat-option *ngIf="!standardPageSizes.includes(pageService.pageSize)" [value]="pageService.pageSize">{{pageService.pageSize}}</mat-option>
 	</mat-select> 
 	Zeilen je Seite</div>

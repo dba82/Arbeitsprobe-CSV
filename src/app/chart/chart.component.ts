@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { combineLatest, Subscription } from 'rxjs';
+import { ChartData } from '../chart-data';
 import { ChartService } from '../chart.service';
 import { DataService } from '../data.service';
 
@@ -9,14 +11,21 @@ import { DataService } from '../data.service';
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
-  public items : any[] = [];
-  public fieldname : string = '';
-  constructor(private route : ActivatedRoute, public chart : ChartService) { }
+  private subscriptions: Subscription[] = [];
+  
+  public chartData : ChartData | null = null;
+  public columnName : string = '';
+  constructor(private route : ActivatedRoute, public data : DataService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe( (params : any) => {
-      this.items = this.chart.statisticsFor(params.fieldname);
-      this.fieldname = params.fieldname;
-    });
-  }  
+    this.subscriptions = [
+      combineLatest([this.data.table, this.route.params])
+        .subscribe(([table, params]) => {
+          this.columnName = params['columnname'];
+          const column = table.getColumnByName(this.columnName);
+          this.chartData = new ChartData(column);
+        })
+    ]
+
+  } 
 }

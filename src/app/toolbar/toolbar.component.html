@@ -2,23 +2,24 @@
 	<mat-toolbar-row>
 	<button 
 		mat-icon-button
-		(click) = "router.navigate(['page', 1])"
+		(click) = "router.navigate(['page', page.pageSize, page.pageNumber])"
 		[disabled] = "router.url.substring(1, 5) === 'page'"
 		matTooltip="Zur Tabelle">
 		<mat-icon> view_list</mat-icon>
 	</button>
 			<!--(click) = "data.download(filename.value)">-->
 	
-			<button 
+	<button 
 		mat-icon-button
-		matTooltip="Lade die Tabelle als CSV-Datei auf dein Gerät.">
-		<mat-icon>save_alt</mat-icon>
+		matTooltip="Lade die Tabelle als CSV-Datei auf dein Gerät."
+		(click) = "showSecondRow = !showSecondRow">
+		<mat-icon>{{showSecondRow ? 'cancel' : 'save_alt'}}</mat-icon>
 	</button>
 	  
 	<app-page-navigation class="page-buttons-wrapper" *ngIf="router.url.substring(1, 5) === 'page'">
 	</app-page-navigation>	
 </mat-toolbar-row>
-<!--<mat-toolbar-row>
+<mat-toolbar-row *ngIf="showSecondRow">
 	<mat-form-field appearance="outline">
 		<mat-label>Dateiname</mat-label>
 
@@ -30,5 +31,5 @@
 		mat-icon-button>
 		<mat-icon>save_alt</mat-icon>
 	</button>
-</mat-toolbar-row>-->
+</mat-toolbar-row>
 </mat-toolbar>

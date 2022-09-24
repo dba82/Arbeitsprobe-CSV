@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button'
 import {MatInputModule} from '@angular/material/input';
 import { PageNavigationComponent } from './page-navigation/page-navigation.component';
 import {MatSelectModule} from '@angular/material/select';
+import { TableContainerComponent } from './table-container/table-container.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {MatSelectModule} from '@angular/material/select';
     PieChartComponent,
     PagePipe,
     ChartComponent,
-    PageNavigationComponent
+    PageNavigationComponent,
+    TableContainerComponent
   ],
   imports: [
     BrowserModule,

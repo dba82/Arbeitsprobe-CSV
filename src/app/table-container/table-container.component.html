@@ -1,0 +1,9 @@
+<app-table 
+			*ngIf="data.table | async" 
+			[table]="(data.table | async)!" 
+			[pageNumber]="page.pageNumber" 
+			[pageSize]="page.pageSize"
+			(load) = "loaded = true"
+			>
+</app-table>
+<!--<div *ngIf="!loaded" style="position: relative; top:0; left:0; z-index:10; height: 100%; width: 100%; background-color: lightblue;"></div>-->

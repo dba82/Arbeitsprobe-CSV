@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChartService } from '../chart.service';
+import { DataTable } from '../data-table';
 import { DataService } from '../data.service';
 import { PageService } from '../page.service';
 
@@ -9,20 +10,13 @@ import { PageService } from '../page.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit{
-  constructor(
-    public data : DataService, 
-    public router : Router, 
-    public pageService:PageService,
-    public route : ActivatedRoute,
-    public chart : ChartService ){
-  }
+export class TableComponent{
+  @Input() table : DataTable = new DataTable([], []);
+  @Input() pageNumber : number = 1;
+  @Input() pageSize : number = 25;
 
-  ngOnInit(): void {
-      this.route.params.subscribe((params : any)=>{
-        if (params.pagenumber){
-          this.pageService.pageNumber = +params.pagenumber;
-        }
-      })
+  constructor(
+    public router : Router, 
+    public chart : ChartService ){
   }
 }

@@ -9,9 +9,9 @@ import { PageService } from '../page.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent{
-
+  public showSecondRow = false;
   constructor(
     public data : DataService, 
     public router : Router, 
-    public pageService : PageService) { }
+    public page : PageService) { }
 }

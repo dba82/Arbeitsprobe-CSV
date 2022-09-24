@@ -36,5 +36,6 @@ export class PieChartComponent  implements OnInit{
   
   ngOnInit(){
     this.generateSlices();
+    console.log(this.items)
   }
 }

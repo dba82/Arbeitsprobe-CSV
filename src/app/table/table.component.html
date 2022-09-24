@@ -1,61 +1,49 @@
-<div class = "table-wrapper">
-	<table>
-	  <thead>
-		<tr>
-      <th>
-        <div class="table-header-cell">  
-          <button 
-            mat-icon-button
-           ><mat-icon></mat-icon>
-          </button>
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <div class="table-header-cell">
+            <button mat-icon-button>
+              <mat-icon></mat-icon>
+            </button>
           </div>
 
-      </th>
-		  <th
-			 *ngFor="let fieldname of data.fieldnames">
-       <div class="table-header-cell">  
-				{{fieldname}}
-        <button 
-          [style.visibility] = "chart.statisticsFor(fieldname).length > 150 ? 'hidden' : 'visible'"
-          mat-icon-button
-          (click) = "router.navigate(['chart/', fieldname])"
-          matTooltip="Prozentuale Darstellung als Tortendiagramm für {{fieldname}}" >
-          <mat-icon>pie_chart</mat-icon>
-        </button>
-        </div>
         </th>
-		</tr>
-	  </thead>
-	  <tbody>
-      <tr *ngFor="let row of data.table | page: pageService.pageNumber; index as i;">
-        <td >
-        <div class="add-remove-cell">
-          <div>{{(i+1) + (pageService.pageNumber-1) * pageService.pageSize}}</div>
-          <!--<button 
+        <th *ngFor="let columnName of table.columnNames">
+          <div class="table-header-cell">
+            {{columnName}}
+            <!--[style.visibility] = "chart.statisticsFor(columnName).length > 150 ? 'hidden' : 'visible'"
+          -->
+            <button mat-icon-button (click)="router.navigate(['chart/', columnName])"
+              matTooltip="Prozentuale Darstellung als Tortendiagramm für {{columnName}}">
+              <mat-icon>pie_chart</mat-icon>
+            </button>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of table.rows | page: pageNumber : pageSize; index as i;">
+        <td>
+          <div class="add-remove-cell">
+            <div>{{(i+1) + (pageNumber-1) * pageSize}}</div>
+            <!--<button 
             mat-icon-button
             >
             <mat-icon>remove_circle</mat-icon>
-          </button>      -->  
-        <button 
-            mat-icon-button
-            (click) = "data.addNewRowAfter(row)"
-            matTooltip="Füge eine neue Reihe unter dieser hinzu"
-            matTooltipPosition="right"
-            >
-            <mat-icon>add_circle</mat-icon>
-          </button>
-        </div>
+          </button>      -->
+            <button mat-icon-button (click)="table.addNewRowAfter(row)"
+              matTooltip="Füge eine neue Reihe unter dieser hinzu" matTooltipPosition="right">
+              <mat-icon>add_circle</mat-icon>
+            </button>
+          </div>
         </td>
-        <td
-          #cell 
-          *ngFor="let fieldname of data.fieldnames"
-          contenteditable 
-          (blur) = "row[fieldname] = cell.innerText"
-          >
-          {{row[fieldname]}}
+        <td #cell *ngFor="let content of row; index as i;" contenteditable (blur)="row[i] = cell.innerText">
+          {{content}}
         </td>
       </tr>
-		</tbody>
-	</table>
+    </tbody>
+  </table>
   <app-page-navigation></app-page-navigation>
 </div>

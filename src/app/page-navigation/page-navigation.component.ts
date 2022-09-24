@@ -8,7 +8,8 @@ import { PageService } from '../page.service';
   styleUrls: ['./page-navigation.component.scss']
 })
 export class PageNavigationComponent implements OnInit {
-
+  public standardPageSizes = [25, 50, 75, 100, 200];
+  
   constructor(public router : Router, public pageService : PageService) { }
 
   ngOnInit(): void {
