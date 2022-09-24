@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./chart-table.component.scss']
 })
 export class ChartTableComponent{
-  @Input() public items: any[] = [];
+  @Input() public data: any;
 }

@@ -8,7 +8,7 @@
 	</thead>
 	<tbody>
 		<tr 
-			*ngFor = "let item of items"
+			*ngFor = "let item of data.percentages"
 			[class] = "item.selected ? 'selected' : ''"
 			(click) = "item.selected = !item.selected"
 			>

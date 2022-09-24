@@ -11,7 +11,7 @@ export class PageService {
   private _pageNumber : number = 1;
 
   constructor(private data : DataService){
-    data.tableLoaded.subscribe(x => this.table = this.data.table);
+    this.data.tableLoaded.subscribe(x=>this.table = this.data.table);
   }
   
   get numberOfPages(){
@@ -25,5 +25,9 @@ export class PageService {
   set pageNumber(n : number){
     if (this.table.length < (n - 1) * this.pageSize || n < 1) return; //weil es eine Seite mehr geben darf
     this._pageNumber = n;  
+  }
+
+  isLegalCombination(pagesize : number, pagenumber : number){
+      return pagenumber <= Math.ceil(this.table.length / this.pageSize);
   }
 }

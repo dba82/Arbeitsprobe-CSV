@@ -15,18 +15,20 @@ export class ChartPageComponent implements OnInit {
   public chartData : ChartData | null = null;
   public columnName : string = '';
 
-  constructor(private route : ActivatedRoute, public data : DataService) { }
+  constructor(private route : ActivatedRoute, public data : DataService, public router : Router) { }
 
   ngOnInit(): void {
     this.subscriptions = [
       combineLatest([this.data.tableLoaded, this.route.params])
         .subscribe(([table, params]) => {
+          if (!table) return;
           this.columnName = params['columnname'];
           const column = this.data.table.getColumnByName(this.columnName);
           this.chartData = new ChartData(column);
         })
     ]
   } 
+
   ngOnDestroy() {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
   }

@@ -33,8 +33,8 @@ matTooltip="Zur letzten Seite der Tabelle"
 <mat-icon>last_page</mat-icon>
 </button>
 <div class = "flex-center">
-	<mat-select
-		[(value)]="pageService.pageSize">
+	<mat-select #select
+		[value]="pageService.pageSize" (selectionChange)= "router.navigate(['page', select.value, pageService.numberOfPages ])">
 		<mat-option *ngFor="let number of standardPageSizes" [value]="number">{{number}}</mat-option>
 		<mat-option *ngIf="!standardPageSizes.includes(pageService.pageSize)" [value]="pageService.pageSize">{{pageService.pageSize}}</mat-option>
 	</mat-select> 

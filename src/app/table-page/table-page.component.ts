@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { combineAll, combineLatest, forkJoin, Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest, Subscription } from 'rxjs';
 import { DataTable } from '../data-table';
 import { DataService } from '../data.service';
 import { PageService } from '../page.service';
@@ -16,15 +16,23 @@ export class TablePageComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
     public page: PageService,
-    public data: DataService) { }
+    public data: DataService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.subscriptions = [
       combineLatest([this.data.tableLoaded, this.route.params])
         .subscribe(([table, params]) => {
+          if (!table) return;
+          
           this.page.pageSize = +params['pagesize'];
           this.page.pageNumber = +params['pagenumber'];
           this.table = this.data.table;
+
+          if (!this.page.isLegalCombination(+params['pagesize'], +params['pagenumber'])){
+            this.router.navigate(['page', +params['pagesize'], this.page.numberOfPages ])
+          }
+
         })
     ]
 

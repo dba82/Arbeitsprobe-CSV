@@ -1,20 +1,34 @@
 <mat-toolbar>
 	<mat-toolbar-row>
 		<button 
+			*ngIf = "router.url.substring(1, 6) === 'chart'"
 			mat-icon-button
 			(click) = "router.navigate(['page', page.pageSize, page.pageNumber])"
-			[disabled] = "router.url.substring(1, 5) === 'page'"
 			matTooltip="Zur Tabelle">
-			<mat-icon> view_list</mat-icon>
+			<mat-icon>view_list</mat-icon>
 		</button>
-		
+		<button 
+			*ngIf = "router.url.substring(1, 5) === 'page'"
+			mat-icon-button
+			(click) = "router.navigate(['chart', data.table.columnNames[5]])"
+			matTooltip="Zur Tabelle">
+		<mat-icon>pie_chart</mat-icon>
+		</button>
 		<button 
 			mat-icon-button
 			matTooltip="Lade die Tabelle als CSV-Datei auf dein Gerät."
 			(click) = "toggleSecondRow()">
 			<mat-icon>{{secondRowVisible ? 'cancel' : 'save_alt'}}</mat-icon>
 		</button>
-		
+
+		<button 
+		mat-icon-button
+		(click) = "file.openFile()"
+		matTooltip="Öffne eine lokale CSV-Datei.">
+		<mat-icon>open_in_browser</mat-icon>
+	</button>
+
+
 		<app-page-navigation 
 			class="page-buttons-wrapper" 
 			*ngIf="router.url.substring(1, 5) === 'page'">

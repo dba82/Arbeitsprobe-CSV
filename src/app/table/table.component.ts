@@ -17,4 +17,10 @@ export class TableComponent{
   constructor(
     public router : Router){
   }
+
+  setContent(row:any, index:number, content:string){
+  console.log(row, index, content)
+    row[index] = (content || '');
+    console.log(row, index, content)
+  }
 }

@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" 
 	[attr.viewBox] = "'0 0 ' + 2 * radius + ' ' + 2 * radius"
 >
-
 	<path  
 		*ngFor= "let item of items trackBy: tracker"
 		[attr.d]="slices[item.name].path"
@@ -13,4 +12,4 @@
 	>
 </path>
 </svg>
-<p *ngIf = "lastItem.name">{{lastItem.name}}  {{lastItem.percentage | percent}} ({{lastItem.count}})</p>
+<p *ngIf = "lastItem">{{lastItem.name}}  {{lastItem.percentage | percent}} ({{lastItem.count}})</p>
