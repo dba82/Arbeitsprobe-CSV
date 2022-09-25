@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChartPageComponent } from './chart-page/chart-page.component';
-
-import { TablePageComponent } from './table-page/table-page.component';
+import { ChartPageComponent } from './Components/chart-page/chart-page.component';
+import { TablePageComponent } from './Components/table-page/table-page.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'page/25/1', pathMatch: 'full'},

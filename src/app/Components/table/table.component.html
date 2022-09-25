@@ -1,0 +1,41 @@
+<div id="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <div class="table-header-cell">
+          </div>
+        </th>
+        <th *ngFor="let columnName of table.columnNames">
+          <div class="table-header-cell">
+            {{columnName}}
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of table.rows | page: pageNumber : pageSize; index as i;">
+        <td>
+          <div class="add-remove-cell">
+            <div>{{(i+1) + (pageNumber-1) * pageSize}}</div>
+            <button 
+              mat-icon-button 
+              (click)="table.addNewRowAfter(row)"
+              matTooltip="Füge eine neue Reihe unter dieser hinzu" matTooltipPosition="right">
+              <mat-icon>add_circle</mat-icon>
+            </button>
+          </div>
+        </td>
+        <td  #cell
+            *ngFor="let columnName of table.columnNames;" 
+            contenteditable 
+            [innerText] ="row[columnName]" (blur)="row[columnName] = cell.innerText"
+            > 
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <footer>
+    <app-page-navigation></app-page-navigation>
+  </footer>
+</div>

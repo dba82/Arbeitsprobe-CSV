@@ -1,0 +1,26 @@
+$base-color: #036;
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+svg,
+figure {
+  height: 100%;
+}
+
+@for $i from 0 through 15 {
+  path:nth-child(#{$i}n) {
+    fill: lighten($base-color, $i * 5%);
+  }
+}
+
+path.selected {
+  fill: goldenrod;
+}
+
+figcaption {
+  width: 100%;
+  text-align: center;
+}
