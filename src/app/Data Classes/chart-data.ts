@@ -22,7 +22,7 @@ export class ChartData {
 
 	get percentages() : any{
 		if (this._lastValue !== this.column) {
-			this._percentages = this.column
+			this._percentages = Object.keys(this.counts)
 				.map((columnContent : string) => {
 					return {
 						...this.counts[columnContent],

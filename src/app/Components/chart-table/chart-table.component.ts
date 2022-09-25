@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ChartData } from '../chart-data';
+import { ChartData } from '../../Data Classes/chart-data';
 
 @Component({
   selector: 'app-chart-table',

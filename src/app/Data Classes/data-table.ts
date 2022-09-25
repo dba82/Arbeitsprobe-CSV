@@ -70,7 +70,7 @@ export class DataTable {
 	}
 
 	getColumnByName(columnName: string) : string[] {
-		return this.rows.map((row: any) => row[columnName]);
+		return this.rows.map((row: any) : string => row[columnName]);
 	}
 
 	toCSVString() : string {

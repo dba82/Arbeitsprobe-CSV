@@ -1,5 +1,5 @@
 import { Component, Input} from '@angular/core';
-import { DataTable } from '../data-table';
+import { DataTable } from '../../Data Classes/data-table';
 
 @Component({
   selector: 'app-table',

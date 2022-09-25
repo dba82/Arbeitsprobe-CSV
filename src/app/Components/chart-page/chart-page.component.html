@@ -1,15 +1,15 @@
 <ng-container *ngIf="chartData">
 	<div id="column-selection">
-	<mat-select #select
-		[value]="columnName" 
-		(selectionChange)= "router.navigate(['chart', select.value])">
-		<mat-option 
-			*ngFor="let name of data.table.columnNames" 
-			[value]="name">
-			{{name}}
-		</mat-option>
-	</mat-select> 
-	({{chartData.percentages.length}})
+		<mat-select #select
+			[value]="columnName" 
+			(selectionChange)= "router.navigate(['chart', select.value])">
+			<mat-option 
+				*ngFor="let name of data.table.columnNames" 
+				[value]="name">
+				{{name}}
+			</mat-option>
+		</mat-select> 
+		({{chartData.percentages.length}})
 	</div>
 
   <div class="wrapper">
