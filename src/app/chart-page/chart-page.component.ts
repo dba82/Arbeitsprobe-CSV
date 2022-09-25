@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Subscription } from 'rxjs';
 import { ChartData } from '../chart-data';
 import { DataService } from '../data.service';
@@ -27,7 +27,7 @@ export class ChartPageComponent implements OnInit {
           this.chartData = new ChartData(column);
         })
     ]
-  } 
+  }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());

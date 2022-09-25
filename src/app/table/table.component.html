@@ -4,21 +4,11 @@
       <tr>
         <th>
           <div class="table-header-cell">
-            <button mat-icon-button>
-              <mat-icon></mat-icon>
-            </button>
           </div>
         </th>
         <th *ngFor="let columnName of table.columnNames">
           <div class="table-header-cell">
             {{columnName}}
-            <!--[style.visibility] = "tooManyDifferentValues(columnName) ? 'hidden' : 'visible'"-->
-            <button 
-              mat-icon-button 
-              (click)="router.navigate(['chart/', columnName])"
-              matTooltip="Prozentuale Darstellung als Tortendiagramm für {{columnName}}">
-              <mat-icon>pie_chart</mat-icon>
-            </button>
           </div>
         </th>
       </tr>
@@ -28,13 +18,14 @@
         <td>
           <div class="add-remove-cell">
             <div>{{(i+1) + (pageNumber-1) * pageSize}}</div>
-            <button mat-icon-button (click)="table.addNewRowAfter(row)"
+            <button 
+              mat-icon-button 
+              (click)="table.addNewRowAfter(row)"
               matTooltip="Füge eine neue Reihe unter dieser hinzu" matTooltipPosition="right">
               <mat-icon>add_circle</mat-icon>
             </button>
           </div>
         </td>
-        <!---->
         <td  #cell
             *ngFor="let columnName of table.columnNames; index as j;" 
             contenteditable 

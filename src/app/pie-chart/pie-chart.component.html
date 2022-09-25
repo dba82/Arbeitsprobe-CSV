@@ -1,15 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" 
-	[attr.viewBox] = "'0 0 ' + 2 * radius + ' ' + 2 * radius"
->
-	<path  
-		*ngFor= "let item of items trackBy: tracker"
-		[attr.d]="slices[item.name].path"
-		class = "{{item.selected ? 'selected' : ''}}"
-		(click) = "item.selected = !item.selected;
-					lastItem = item"
-		[matTooltip]="(item.percentage | percent ) + ' ' + (item.name.length ? item.name : 'kein Wert')"
-		matTooltipPosition="above"
+<figure>
+
+	<svg xmlns="http://www.w3.org/2000/svg" 
+		[attr.viewBox] = "'0 0 ' + 2 * radius + ' ' + 2 * radius"
 	>
-</path>
-</svg>
-<p *ngIf = "lastItem">{{lastItem.name}}  {{lastItem.percentage | percent}} ({{lastItem.count}})</p>
+		<path  
+			*ngFor= "let item of items trackBy: tracker"
+			[attr.d]="slices[item.name].path"
+			class = "{{item.selected ? 'selected' : ''}}"
+			(click) = "item.selected = !item.selected; lastItem = item"
+			[matTooltip]="(item.percentage | percent ) + ' ' + (item.name.length ? item.name : 'kein Wert')"
+			matTooltipPosition="above"
+		>
+		</path>
+	</svg>
+	
+	<figcaption *ngIf = "lastItem">
+		{{lastItem.name}}  {{lastItem.percentage | percent}} ({{lastItem.count}})
+	</figcaption>
+</figure>

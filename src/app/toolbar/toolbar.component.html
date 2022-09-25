@@ -1,5 +1,6 @@
 <mat-toolbar>
 	<mat-toolbar-row>
+
 		<button 
 			*ngIf = "router.url.substring(1, 6) === 'chart'"
 			mat-icon-button
@@ -14,24 +15,26 @@
 			matTooltip="Zu den Tortendiagrammen">
 		<mat-icon>pie_chart</mat-icon>
 		</button>
+
+
 		<button 
 			mat-icon-button
-			matTooltip="Lade die Tabelle als CSV-Datei auf dein Gerät."
+			matTooltip="Lade die Tabelle als CSV-Datei auf dein Gerät"
 			(click) = "toggleSecondRow()">
 			<mat-icon>{{secondRowVisible ? 'cancel' : 'save_alt'}}</mat-icon>
 		</button>
 
 		<button 
-		mat-icon-button
-		(click) = "file.openFile()"
-		matTooltip="Öffne eine lokale CSV-Datei.">
+			mat-icon-button
+			(click) = "data.openFile()"
+			matTooltip="Öffne eine lokale CSV-Datei">
 		<mat-icon>open_in_browser</mat-icon>
-	</button>
+		</button>
 
 
 		<app-page-navigation 
-			class="page-buttons-wrapper" 
-			*ngIf="router.url.substring(1, 5) === 'page'">
+			*ngIf="router.url.substring(1, 5) === 'page'"
+			class="page-buttons-wrapper" >
 		</app-page-navigation>	
 	</mat-toolbar-row>
 
@@ -40,7 +43,9 @@
 			id = "filename"
 			appearance="outline">
 			<mat-label>Dateiname</mat-label>
-			<input #input matInput [value] = "data.filename">
+			<input #input 
+				matInput 
+				[value] = "data.filename">
 		</mat-form-field>
 		<button 
 			(click) = "data.download(input.value)"

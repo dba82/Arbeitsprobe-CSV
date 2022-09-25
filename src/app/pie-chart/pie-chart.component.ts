@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-pie-chart',
@@ -8,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class PieChartComponent implements OnChanges {
   @Input() public data: any;
+
   public slices: any = {};
   public center = { x: 100, y: 100 };
   public radius = 100;
@@ -23,7 +23,6 @@ export class PieChartComponent implements OnChanges {
       .reduce((result: any,
         item: { name: string, percentage: number },
         index: number) => {
-          console.log(item)
         const startAngle = (index > 0) ? result[this.data.percentages[index - 1].name]?.endAngle : 0;
         const endAngle = startAngle! + Math.PI * 2 * item.percentage
         result[item.name] = {

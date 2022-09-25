@@ -1,41 +1,44 @@
 <button 
-mat-icon-button
-(click) = "router.navigate(['page', pageService.pageSize, 1])"
-[disabled] = "pageService.pageNumber === 1"
-matTooltip="Zur ersten Seite der Tabelle"
+	mat-icon-button
+	(click) = "router.navigate(['page', pageService.pageSize, 1])"
+	[disabled] = "pageService.pageNumber === 1"
+	matTooltip="Zur ersten Seite der Tabelle"
 >
-<mat-icon>first_page</mat-icon>
+	<mat-icon>first_page</mat-icon>
 </button>
 <button 
-mat-icon-button
-(click) = "router.navigate(['page', pageService.pageSize, pageService.pageNumber - 1 ])"
-[disabled] = "pageService.pageNumber === 1"
-matTooltip="Eine Seite zurück">
-<mat-icon>chevron_left</mat-icon>
+	mat-icon-button
+	(click) = "router.navigate(['page', pageService.pageSize, pageService.pageNumber - 1 ])"
+	[disabled] = "pageService.pageNumber === 1"
+	matTooltip="Eine Seite zurück">
+	<mat-icon>chevron_left</mat-icon>
 </button>
 
 <div class = "flex-center">{{pageService.pageNumber}} von {{pageService.numberOfPages}}</div>	
 
 <button 
-mat-icon-button
-(click) = "router.navigate(['page', pageService.pageSize, pageService.pageNumber + 1 ])"
-[disabled] = "pageService.pageNumber === pageService.numberOfPages"
-matTooltip="Eine Seite vor."
+	mat-icon-button
+	(click) = "router.navigate(['page', pageService.pageSize, pageService.pageNumber + 1 ])"
+	[disabled] = "pageService.pageNumber === pageService.numberOfPages"
+	matTooltip="Eine Seite vor."
 >
-<mat-icon>chevron_right</mat-icon>
+	<mat-icon>chevron_right</mat-icon>
 </button>
 <button 
-mat-icon-button
-(click) = "router.navigate(['page', pageService.pageSize, pageService.numberOfPages ])"
-[disabled] = "pageService.pageNumber === pageService.numberOfPages"
-matTooltip="Zur letzten Seite der Tabelle"
+	mat-icon-button
+	(click) = "router.navigate(['page', pageService.pageSize, pageService.numberOfPages ])"
+	[disabled] = "pageService.pageNumber === pageService.numberOfPages"
+	matTooltip="Zur letzten Seite der Tabelle"
 >
-<mat-icon>last_page</mat-icon>
+	<mat-icon>last_page</mat-icon>
 </button>
 <div class = "flex-center">
 	<mat-select #select
-		[value]="pageService.pageSize" (selectionChange)= "router.navigate(['page', select.value, pageService.numberOfPages ])">
+		[value]="pageService.pageSize" 
+		(selectionChange)= "router.navigate(['page', select.value, pageService.numberOfPages ])"
+	>
 		<mat-option *ngFor="let number of standardPageSizes" [value]="number">{{number}}</mat-option>
 		<mat-option *ngIf="!standardPageSizes.includes(pageService.pageSize)" [value]="pageService.pageSize">{{pageService.pageSize}}</mat-option>
 	</mat-select> 
-	Zeilen je Seite</div>
+	Zeilen je Seite
+</div>

@@ -1,5 +1,3 @@
-import { thresholdScott } from "d3";
-
 export class ChartData {
 	constructor(public column: string[]) { }
 	private _lastValue : string[] = [];

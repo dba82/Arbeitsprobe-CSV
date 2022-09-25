@@ -12,6 +12,7 @@ import { PageService } from '../page.service';
 })
 export class TablePageComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
+  
   public table: DataTable = new DataTable([], []);
 
   constructor(private route: ActivatedRoute,
@@ -32,7 +33,6 @@ export class TablePageComponent implements OnInit, OnDestroy {
           if (!this.page.isLegalCombination(+params['pagesize'], +params['pagenumber'])){
             this.router.navigate(['page', +params['pagesize'], this.page.numberOfPages ])
           }
-
         })
     ]
 

@@ -1,11 +1,10 @@
 import { Injectable, RendererFactory2 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { DataTable } from './data-table';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FiledownloadService {
+export class FileService {
   private renderer;
   private fileInput;
   public fileLoaded : Subject<string>= new Subject();
@@ -15,15 +14,16 @@ export class FiledownloadService {
     this.fileInput = this.renderer.createElement('input');
     this.renderer.setAttribute(this.fileInput, 'type', 'file');
     this.fileInput.click();
-    this.renderer.listen(this.fileInput, 'change', (event) => {
+    this.renderer.listen(this.fileInput, 'change', () => {
       let file = this.fileInput.files[0];
-      (async () => {
-        const fileContent = await file.text();
-        this.fileLoaded.next(fileContent);
-      })();
+      this.loadFile(file);
     })
   }
 
+  async loadFile(file : File){
+    const fileContent = await file.text();
+    this.fileLoaded.next(fileContent);
+  }
 
   downloadAsText(content : string, filename : string){
     const a = this.renderer.createElement('a');

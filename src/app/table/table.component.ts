@@ -1,9 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewChecked } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input} from '@angular/core';
 import { DataTable } from '../data-table';
-import { DataService } from '../data.service';
-import { PageService } from '../page.service';
-
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -13,14 +9,4 @@ export class TableComponent{
   @Input() table : DataTable = new DataTable([], []);
   @Input() pageNumber : number = 1;
   @Input() pageSize : number = 25;
-
-  constructor(
-    public router : Router){
-  }
-
-  setContent(row:any, index:number, content:string){
-  console.log(row, index, content)
-    row[index] = (content || '');
-    console.log(row, index, content)
-  }
 }

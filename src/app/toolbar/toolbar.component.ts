@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
-import { FiledownloadService } from '../filedownload.service';
+import { FileService } from '../file.service';
 import { PageService } from '../page.service';
 
 @Component({
@@ -13,11 +13,11 @@ export class ToolbarComponent{
   @Output() sizeChange = new EventEmitter();
 
   public secondRowVisible = false;
+
   constructor(
     public data : DataService, 
     public router : Router, 
-    public page : PageService,
-    public file : FiledownloadService) { }
+    public page : PageService) { }
 
   toggleSecondRow(){
     this.secondRowVisible = !this.secondRowVisible;

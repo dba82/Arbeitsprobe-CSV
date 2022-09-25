@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PageService } from '../page.service';
 
@@ -7,13 +7,9 @@ import { PageService } from '../page.service';
   templateUrl: './page-navigation.component.html',
   styleUrls: ['./page-navigation.component.scss']
 })
-export class PageNavigationComponent implements OnInit {
+export class PageNavigationComponent{
   public standardPageSizes = [25, 50, 75, 100, 200];
-  
+
   constructor(public router : Router, public pageService : PageService) { }
-
-  ngOnInit(): void {
-  }
-
 
 }
