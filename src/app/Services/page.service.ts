@@ -3,8 +3,13 @@ import { DataTable } from '../Data Classes/data-table';
 import { DataService } from './data.service';
 
 
- /**
- * PageService dient dazu einem Tablecomponent die
+/**
+ * Der PageService
+ * - Informiert Komponenten über die aktuelle Seitenzahl, Seitengröße 
+ *   und festgelegte Standardseitengrößen.
+ * - Setzt Seitenzahl und Seitengröße neu und prüft dabei, ob die gewünschte Zahl Sinn ergibt.
+ * - berechnet bei vorgegebener Seitengröße die benötigte Seitenanzahl für die Tabelle
+ * - prüft ob eine Seitenzahl zur gegebenen Tabelle und Seitengröße passt
  */
 @Injectable({
   providedIn: 'root'
@@ -13,10 +18,8 @@ export class PageService {
   private table : DataTable= new DataTable([], []);
   public pageSize : number = 25;
   private _pageNumber : number = 1;
+  public standardPageSizes : number[] = [25, 50, 75, 100, 200];
 
-  /**
- * PageService benötigt die aktuelle Tabelle, um die Gesamtseitenzahl zu berechnen
- */
   constructor(private data : DataService){
     this.data.tableLoaded.subscribe(x=>this.table = this.data.table);
   }

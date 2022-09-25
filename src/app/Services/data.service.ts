@@ -3,6 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { FileService } from './file.service';
 import { DataTable } from '../Data Classes/data-table';
 import { BehaviorSubject } from 'rxjs';
+
+/**
+ * Der Dataservice
+ * - Lädt eine Tabelle entweder per http oder Lokal
+ * - Informiert Komponenten, ob eine neue Tabelle geladen ist und 
+ *   stellt diese zur Verfügung.
+ * - Initiiert einen Dateidownload der Tabelle als CSV-Datei
+ */
 @Injectable({
   providedIn: 'root'
 })

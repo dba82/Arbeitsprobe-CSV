@@ -3,7 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Subscription } from 'rxjs';
 import { ChartData } from '../../Data Classes/chart-data';
 import { DataService } from '../../Services/data.service';
-
+/**
+ * Der ChartPageComponent dient zur Darstellung eines Tortendiagramms
+ * und einer begleitenden Tabelle.
+ * Die benötigten Daten werden entsprechend der aktuellen url aus 
+ * den Tabellendaten des DataServices generiert.
+ */
 @Component({
   selector: 'app-chart-page',
   templateUrl: './chart-page.component.html',
@@ -20,6 +25,10 @@ export class ChartPageComponent implements OnInit {
       public router : Router) { }
 
   ngOnInit(): void {
+    /**
+     * Wenn die Tabelle fertig geladen ist, werden die Daten für
+     * das Tortendiagramm entsprechend der aktuellen url generiert.
+     */
     this.subscriptions = [
       combineLatest([this.data.tableLoaded, this.route.params])
         .subscribe(([table, params]) => {

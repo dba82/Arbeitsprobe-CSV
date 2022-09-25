@@ -37,8 +37,13 @@
 		[value]="pageService.pageSize" 
 		(selectionChange)= "router.navigate(['page', select.value, pageService.numberOfPages ])"
 	>
-		<mat-option *ngFor="let number of standardPageSizes" [value]="number">{{number}}</mat-option>
-		<mat-option *ngIf="!standardPageSizes.includes(pageService.pageSize)" [value]="pageService.pageSize">{{pageService.pageSize}}</mat-option>
+		<mat-option 
+			*ngFor="let number of pageService.standardPageSizes" 
+			[value]="number">{{number}}</mat-option>
+		<mat-option 
+			*ngIf="!pageService.standardPageSizes.includes(pageService.pageSize)" 
+			[value]="pageService.pageSize">{{pageService.pageSize}}
+		</mat-option>
 	</mat-select> 
 	Zeilen je Seite
 </div>

@@ -1,6 +1,13 @@
 import { Injectable, RendererFactory2 } from '@angular/core';
 import { Subject } from 'rxjs';
 
+/**
+ * Der FileService
+ * - öffnet einen Datei-Laden-Dialog und stellt den Inhalt
+ *   der geladenen Datei als String zur Verfügung.
+ * - Initiiert den Download einer Textdatei mit zu übergebendem String
+ *   als Inhalt und zu übergebendem Dateinamen inklusive Endung.
+ */
 @Injectable({
   providedIn: 'root'
 })

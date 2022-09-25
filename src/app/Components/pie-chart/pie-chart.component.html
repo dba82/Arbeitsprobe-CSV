@@ -13,8 +13,10 @@
 		>
 		</path>
 	</svg>
-	
+
+
 	<figcaption *ngIf = "lastItem">
-		{{lastItem.name}}  {{lastItem.percentage | percent}} ({{lastItem.count}})
+		<!--Um auch auf Touchgeräten die Anzeige der Namen und Prozente zu ermöglichen-->
+		{{lastItem.name || 'kein Wert'}}  {{lastItem.percentage | percent}} ({{lastItem.count}})
 	</figcaption>
 </figure>

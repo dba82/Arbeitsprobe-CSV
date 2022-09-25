@@ -1,4 +1,23 @@
+/**
+ * !! Wichtig, die Spaltennamen müssen eindeutig sein !!
+ * 
+ * Die DataTable-Klasse repräsentiert Tabellarische Daten, in 
+ * Form eines Objekts, dessen Schlüssel die Spaltennamen sind.
+ * (Das naheliegende Format als 2-dimensionales Array von Strings 
+ * führte leider zu Problemen beim Databinding in der Tabelle).
+ * 
+ * - Zeilen können nach einer gewählten Spalte hinzugefügt werden.
+ * - Spalten können nach ihrem Namen ausgewählt werden.
+
+ */
 export class DataTable {
+	/**
+	 *	Diese Methode geht davon aus, dass der CSV-String wohlgeformt ist,
+	 *	eine Annahme, die nicht problematisch sein sollte, da er mit hoher
+	 *  Wahrscheinlichkeit maschinell erstellt wurde. 
+	 *  Der String wird "am Stück" abgearbeitet was bei sehr sehr vielen
+	 *  Datensätzen zu langen Verarbeitungspausen führen kann.
+	 */
 	static fromCSVString(str: string) : DataTable{
 		let betweenQuotes: boolean = false;
 		let currentString: string = '';

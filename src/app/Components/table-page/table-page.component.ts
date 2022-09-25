@@ -4,7 +4,12 @@ import { combineLatest, Subscription } from 'rxjs';
 import { DataTable } from '../../Data Classes/data-table';
 import { DataService } from '../../Services/data.service';
 import { PageService } from '../../Services/page.service';
-
+/**
+ * Der TablePageComponent dient zur Darstellung eines Tabellenausschnitts.
+ * Er ist außerdem dafür zuständig anhand der aktuellen URL den
+ * entsprechenden Ausschnitt im PageService zu setzen,
+ * sobald die Tabelle im DataService geladen ist.
+ */
 @Component({
   selector: 'app-table-container',
   templateUrl: './table-page.component.html',
@@ -30,6 +35,10 @@ export class TablePageComponent implements OnInit, OnDestroy {
           this.page.pageNumber = +params['pagenumber'];
           this.table = this.data.table;
 
+          /**
+           * Sollte die in der URL angegebene Kombination von Seitennummer und Seitengröße
+           * keinen Sinn ergeben, wird zur letzten Seite navigiert.
+           * */
           if (!this.page.isLegalCombination(+params['pagesize'], +params['pagenumber'])){
             this.router.navigate(['page', +params['pagesize'], this.page.numberOfPages ])
           }

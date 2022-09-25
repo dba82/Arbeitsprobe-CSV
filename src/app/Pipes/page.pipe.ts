@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
+/**
+ * Die PagePipe gibt einen Ausschnitt eines Arrays zurück.
+ */
 @Pipe({
   name: 'page',
   pure: false
