@@ -21,22 +21,22 @@
 
 # Zu den Einzelaufgaben
 
-# 1. Import der CSV-Datei
+## 1. Import der CSV-Datei
 Die CSV-Datei wird per HTTP-Request vom Server geholt. Alternativ kann eine lokale CSV Datei geöffnet werden.
 
-# 2. Tabellarische Darstellung der Daten aus der CSV-Datei
+## 2. Tabellarische Darstellung der Daten aus der CSV-Datei
 Die Tabelle als Ganzes darstellen, führt wegen der großen Anzahl an Datensätzen zu bemerkbaren Ladezeiten und zu vergleichsweise hohem Speichergebrauch. Eine Alternative ist eine Virtualscrolllösung, bei der der Anschein erweckt wird, dass die gesamte Tabelle gerendert wird, in Wirklichkeit aber immer nur der gerade sichtbare Teil tatsächlich auf der Seite ist. Angular Material CDK bietet eine solche Lösung (https://material.angular.io/cdk/scrolling/overview), allerdings hätte ich dann eine feste Höhe für die Tabellenzeilen festlegen müssen. Da ich es bevorzuge, wenn der gesamte Text in einer Zeile sichtbar ist, wählte ich diese Option nicht. Eine andere Möglichkeit wäre es die Autosizevariante zu nutzen. Diese ist aber (immer noch) nur im Experimental CDK-verfügbar, das nicht für “echte” Produkte empfohlen wird. Deshalb habe ich mich für die paginierte Tabelle entschieden.
 
-# 3. Anlegen von neuen Datensätzen anhand des gleichen Schemas
+## 3. Anlegen von neuen Datensätzen anhand des gleichen Schemas
 Ein neuer Datensatz wird in der Tabelle unter einer bestehenden Zeile angelegt, indem auf den Button neben der Zeile geklickt wird.
 
-# 4. Bearbeitung bestehender Datensätze
+## 4. Bearbeitung bestehender Datensätze
 Einzelne Datensätze können direkt in der Tabelle bearbeitet werden. Eine Alternative zur direkten Bearbeitung der Inhalte in der Tabelle wäre gewesen, beim Klicken auf eine Zeile ein Bearbeitungsformular zu öffnen. Ich habe mich hier gegen entschieden, da ich in diesem Fall keinen Mehrwert sah.
 
-# 5. Prozentuale Darstellung von Datensätzen als Chart (Balken- oder Tortendiagramm)
+## 5. Prozentuale Darstellung von Datensätzen als Chart (Balken- oder Tortendiagramm)
 Zu jeder Spalte kann ein Tortendiagramm mit nebenstehender Legenden-Tabelle angezeigt werden. Wird eine Zeile in der Tabelle angeklickt, wird auch das entsprechende "Tortenstück" markiert.
 
-# 6. Export aller Daten als CSV-Datei mit dem gleichen Schema
+## 6. Export aller Daten als CSV-Datei mit dem gleichen Schema
 Die Datei kann als CSV-Datei mit frei wählbarem Dateinamen heruntergeladen werden.
 
 # Entscheidungen
