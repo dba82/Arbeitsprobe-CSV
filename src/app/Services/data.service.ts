@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FileService } from './file.service';
 import { DataTable } from '../Data Classes/data-table';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 /**
  * Der Dataservice
@@ -19,19 +20,31 @@ export class DataService {
   public filename = 'articles';
   public table : DataTable = new DataTable([], []);
 
-  constructor(private http: HttpClient, private file: FileService) {
+  constructor(private http: HttpClient, private file: FileService, private router: Router) {
+    const onTableData = {
+      next: this.loadTable,
+      error: (error : Error) => {
+        this.router.navigate(['error']);
+        console.log(error);
+    }
+    };
+
     this.http
       .get('assets/' + this.filename + '.csv', { responseType: 'text' })
-      .subscribe(x=>{
-         this.table = DataTable.fromCSVString(x)
-         this.tableLoaded.next(true);
-        });
-
-    file.fileLoaded.subscribe((value : string) =>{
-      this.table = DataTable.fromCSVString(value);
-      this.tableLoaded.next(true);
-    });
+      .subscribe(onTableData)
+    file.fileLoaded.subscribe(onTableData);
   }
+
+  loadTable = (str : string) => {
+    try {
+      this.table = DataTable.fromCSVString(str);
+      this.tableLoaded.next(true);
+     }
+     catch (error){
+       console.log(error);
+       this.router.navigate(['error']);
+     } 
+   }
 
   download(filename : string = 'articles') {
     const csvString = this.table.toCSVString();

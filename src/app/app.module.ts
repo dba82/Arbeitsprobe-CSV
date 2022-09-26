@@ -12,8 +12,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './Components/App/app.component';
+
 import { TablePageComponent } from './Components/table-page/table-page.component';
 import { ChartPageComponent } from './Components/chart-page/chart-page.component'
+import { ErrorPageComponent } from './Components/error-page/error-page.component';
 
 import { ChartTableComponent } from './Components/chart-table/chart-table.component';
 import { TableComponent } from './Components/table/table.component';
@@ -22,6 +24,7 @@ import { PieChartComponent } from './Components/pie-chart/pie-chart.component';
 import { PageNavigationComponent } from './Components/page-navigation/page-navigation.component';
 
 import { PagePipe } from './Pipes/page.pipe';
+
 
 
 
@@ -36,6 +39,7 @@ import { PagePipe } from './Pipes/page.pipe';
     PieChartComponent,
     PageNavigationComponent,
     PagePipe,
+    ErrorPageComponent,
 
 
   ],

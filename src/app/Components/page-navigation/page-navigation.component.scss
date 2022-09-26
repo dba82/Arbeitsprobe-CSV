@@ -11,3 +11,11 @@
 	display: flex;
 	align-items: center;
 }
+.not-on-small-screens{
+	display: none;
+}
+@media (min-width: 575px){
+	.not-on-small-screens{
+		display: inline;
+	}
+}

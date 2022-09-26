@@ -12,9 +12,6 @@
  */
 export class DataTable {
 	/**
-	 *	Diese Methode geht davon aus, dass der CSV-String wohlgeformt ist,
-	 *	eine Annahme, die nicht problematisch sein sollte, da er mit hoher
-	 *  Wahrscheinlichkeit maschinell erstellt wurde. 
 	 *  Der String wird "am Stück" abgearbeitet was bei sehr sehr vielen
 	 *  Datensätzen zu langen Verarbeitungspausen führen kann.
 	 */
@@ -22,7 +19,7 @@ export class DataTable {
 		let betweenQuotes: boolean = false;
 		let currentString: string = '';
 		let currentRow: string[] = [];
-		let table: any[] = [];
+		const table: any[] = [];
 
 		for (let i = 0; i < str.length; i++) {
 			const char = str[i];
@@ -53,6 +50,10 @@ export class DataTable {
 					currentRow.push(currentString);
 					currentString = '';
 					if (table[0]) {
+						if (currentRow.length != table[0].length){
+							throw new Error(`Row ${(table.length + 1)} contains \
+							 ${currentRow.length} Items, should have ${table[0].length}`)
+						}
 						table.push(
 							table[0].reduce((a: any, b: string, i: number) => {
 								a[b] = currentRow[i];

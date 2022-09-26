@@ -18,6 +18,7 @@
 
 
 		<button 
+			*ngIf="router.url.substring(1, 6) !== 'error'"
 			mat-icon-button
 			(click) = "toggleSecondRow()"
 			matTooltip="Lade die Tabelle als CSV-Datei auf dein Gerät"
