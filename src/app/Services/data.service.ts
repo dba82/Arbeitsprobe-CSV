@@ -39,6 +39,7 @@ export class DataService {
     try {
       this.table = DataTable.fromCSVString(str);
       this.tableLoaded.next(true);
+      this.router.navigate(['']);
      }
      catch (error){
        console.log(error);
