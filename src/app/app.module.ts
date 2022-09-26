@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from  '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
+//Angular Material Module
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip'
 import { MatButtonModule } from '@angular/material/button'
@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './Components/App/app.component';
 
+//Top-Level-Components
 import { TablePageComponent } from './Components/table-page/table-page.component';
 import { ChartPageComponent } from './Components/chart-page/chart-page.component'
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
@@ -47,7 +48,6 @@ import { PagePipe } from './Pipes/page.pipe';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NoopAnimationsModule,
     MatToolbarModule,
     MatIconModule,
     MatTooltipModule,
